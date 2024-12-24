@@ -18,6 +18,7 @@ public class ArrayStringList implements StringList {
 
     @Override
     public String add(String item) {
+        checkNotNull(item);
         checkNewSize(size + 1);
         list[size] = item;
         size++;
@@ -26,6 +27,7 @@ public class ArrayStringList implements StringList {
 
     @Override
     public String add(int index, String item) {
+        checkNotNull(item);
         if (index == size) {
             return add(item);
         } else {
@@ -40,6 +42,7 @@ public class ArrayStringList implements StringList {
 
     @Override
     public String set(int index, String item) {
+        checkNotNull(item);
         checkIndex(index);
         list[index] = item;
         return item;
@@ -47,6 +50,7 @@ public class ArrayStringList implements StringList {
 
     @Override
     public String remove(String item) {
+        checkNotNull(item);
         return remove(indexOf(item));
     }
 
@@ -56,32 +60,32 @@ public class ArrayStringList implements StringList {
         String res = list[index];
         System.arraycopy(list, index + 1, list, index, size - index);
         size--;
+        list[size] = null;
         return res;
     }
 
     @Override
     public boolean contains(String item) {
+        checkNotNull(item);
         return indexOf(item) > -1;
     }
 
     @Override
     public int indexOf(String item) {
+        checkNotNull(item);
         for (int i = 0; i < size; i++) {
-            if (compareElements(item, list[i])) {
+            if (item.equals(list[i])) {
                 return i;
             }
         }
         return -1;
     }
 
-    private boolean compareElements(String a, String b) {
-        return a == null && b == null || a != null && a.equals(b);
-    }
-
     @Override
     public int lastIndexOf(String item) {
+        checkNotNull(item);
         for (int i = size - 1; i >= 0; i--) {
-            if (compareElements(item, list[i])) {
+            if (item.equals(list[i])) {
                 return i;
             }
         }
@@ -96,15 +100,14 @@ public class ArrayStringList implements StringList {
 
     @Override
     public boolean equals(StringList otherList) {
-        if (otherList == null) {
-            throw new NullPointerException();
-        } else if (this == otherList) {
+        checkNotNull(otherList);
+        if (this == otherList) {
             return true;
         } else if (otherList.size() != size) {
             return false;
         } else {
             for (int i = 0; i < size; i++) {
-                if (!compareElements(otherList.get(i), get(i))) {
+                if (!list[i].equals(otherList.get(i))) {
                     return false;
                 }
             }
@@ -148,6 +151,12 @@ public class ArrayStringList implements StringList {
     private void checkNewSize(int newSize) {
         if (newSize > list.length) {
             grow(newSize);
+        }
+    }
+
+    private void checkNotNull(Object object) {
+        if (object == null) {
+            throw new NullPointerException();
         }
     }
 }
