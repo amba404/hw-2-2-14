@@ -1,4 +1,5 @@
 package pro.sky;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,22 +24,22 @@ public class ArrayStringListTest {
     @Test
     public void testNullFails() {
         assertThrows(NullPointerException.class, () -> arrayStringList.add(null));
-        assertThrows(NullPointerException.class, () -> arrayStringList.add(0,null));
+        assertThrows(NullPointerException.class, () -> arrayStringList.add(0, null));
         assertThrows(NullPointerException.class, () -> arrayStringList.indexOf(null));
         assertThrows(NullPointerException.class, () -> arrayStringList.lastIndexOf(null));
         assertThrows(NullPointerException.class, () -> arrayStringList.remove(null));
-        assertThrows(NullPointerException.class, () -> arrayStringList.set(0,null));
+        assertThrows(NullPointerException.class, () -> arrayStringList.set(0, null));
         assertThrows(NullPointerException.class, () -> arrayStringList.contains(null));
     }
 
     @Test
     public void testOutOfBoundsFails() {
-        assertThrows(IndexOutOfBoundsException.class, () -> arrayStringList.add(-1,""));
-        assertThrows(IndexOutOfBoundsException.class, () -> arrayStringList.add(arrayStringList.size()+1,""));
+        assertThrows(IndexOutOfBoundsException.class, () -> arrayStringList.add(-1, ""));
+        assertThrows(IndexOutOfBoundsException.class, () -> arrayStringList.add(arrayStringList.size() + 1, ""));
         assertThrows(IndexOutOfBoundsException.class, () -> arrayStringList.get(-1));
         assertThrows(IndexOutOfBoundsException.class, () -> arrayStringList.get(arrayStringList.size()));
-        assertThrows(IndexOutOfBoundsException.class, () -> arrayStringList.set(-1,""));
-        assertThrows(IndexOutOfBoundsException.class, () -> arrayStringList.set(arrayStringList.size(),""));
+        assertThrows(IndexOutOfBoundsException.class, () -> arrayStringList.set(-1, ""));
+        assertThrows(IndexOutOfBoundsException.class, () -> arrayStringList.set(arrayStringList.size(), ""));
         assertThrows(IndexOutOfBoundsException.class, () -> arrayStringList.remove(-1));
         assertThrows(IndexOutOfBoundsException.class, () -> arrayStringList.remove(arrayStringList.size()));
     }

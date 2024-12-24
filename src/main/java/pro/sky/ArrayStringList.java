@@ -3,9 +3,9 @@ package pro.sky;
 import java.util.Arrays;
 
 public class ArrayStringList implements StringList {
+    private static final int DEFAULT_LENGTH = 8;
     private String[] list;
     private int size;
-    private static final int DEFAULT_LENGTH = 8;
 
     public ArrayStringList(int size) {
         this.size = 0;
