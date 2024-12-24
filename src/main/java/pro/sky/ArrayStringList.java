@@ -138,7 +138,7 @@ public class ArrayStringList implements StringList {
 
     private void checkIndex(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
+            throw new ArrayStringListIndexOutOfBoundsException("Index out of bounds");
         }
     }
 
@@ -156,7 +156,7 @@ public class ArrayStringList implements StringList {
 
     private void checkNotNull(Object object) {
         if (object == null) {
-            throw new NullPointerException();
+            throw new ArrayStringListNullPointerException("Expected parameter cannot be null");
         }
     }
 }
